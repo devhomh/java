@@ -1,5 +1,7 @@
 package practice;
 
+import java.util.function.BinaryOperator;
+
 public class Mathx {
     public static void main(String[] args) {
         double[] numbers = new double[args.length];
@@ -10,16 +12,29 @@ public class Mathx {
         }
     }
 
-    public static double reduce(BinaryOperation binaryOperation, double init, double... numbers) {
+    public static <T> T reduce(BinaryOperator<T> binaryOperation, T init, T... numbers) {
         return reduceIf(x -> true, binaryOperation, init, numbers);
     }
 
     // fold-{right, left}, accumulate
-    public static double reduceIf(Predicate predicate, BinaryOperation binaryOperation, double init,
-            double... numbers) {
-        double result = init;
-        for (double number : numbers) // Liskov's Substitution Principle (LSP)
-            if (predicate.apply(number))
+    // Type Polimorphism - primitive type을 넣을 수 없다.
+
+    // public static double reduceIf(Predicate predicate, BinaryOperation binaryOperation, double
+    // init,
+    // double... numbers) {
+    // double result = init;
+    // for (double number : numbers) // Liskov's Substitution Principle (LSP)
+    // if (predicate.apply(number))
+    // result = binaryOperation.apply(result, number);
+
+    // return result;
+    // }
+
+    public static <T> T reduceIf(java.util.function.Predicate<T> predicate,
+            java.util.function.BinaryOperator<T> binaryOperation, T init, T... numbers) {
+        T result = init;
+        for (T number : numbers) // Liskov's Substitution Principle (LSP)
+            if (predicate.test(number))
                 result = binaryOperation.apply(result, number);
 
         return result;
@@ -36,14 +51,14 @@ public class Mathx {
     }
 
     public static double sum(double... numbers) { // Type Signature
-        return Mathx.reduce(new Plus(), 0, numbers);
+        return reduce(new Plus(), 0, numbers);
     }
 
     // 변수 = (이름, 값, 범위 (Scope), Type (저장 공간 크기, 값의 해석), Life Time)
     // 이름이 Abstraction 한다.
 
     public static double multiply(double... numbers) {
-        return Mathx.reduce(new Multiply(), 1, numbers);
+        return reduce(new Multiply(), 1, numbers);
     }
 
     public static int gcd(int i, int j) {

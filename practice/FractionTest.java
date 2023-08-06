@@ -1,50 +1,18 @@
 package practice;
 
-public class FractionTest { // fractional, numerator, denomiator는 Abstraction Barrier
-    public static int[] fractional(int x, int y) {
-        if (y == 0) { // precondition
-            throw new IllegalArgumentException("denomiator can't be 0");
-        }
-        int[] rep = new int[] {x, y};
-        classInvariant(rep);
-        return rep;
-    }
-
-    private static void classInvariant(int[] rep) {
-        int[] tmp = rep;
-        rep[0] *= 2;
-        rep[1] *= 2;
-        normalize(rep);
-        if (rep != tmp)
-            throw new IllegalArgumentException("분자 분모의 비율이 같지 않습니다.");
-    }
-
-    public static int numerator(int[] r) { // getter
-        normalize(r);
-        return r[0];
-    }
-
-    public static int denomiator(int[] r) { // getter
-        normalize(r);
-        return r[1];
-    }
-
-    public static boolean equals(int[] x, int[] y) {
-        return (numerator(x) == numerator(y) && denomiator(x) == denomiator(y));
-    }
-
-    private static void normalize(int[] r) {
-        int gcd = Mathx.gcd(r[0], r[1]);
-        r[0] /= gcd;
-        r[1] /= gcd;
-    }
-
-
+public class FractionTest {
     public static void main(String[] args) {
-        int[][] rs = {fractional(1, 2), fractional(2, 4), fractional(4, 8), fractional(5, 10)};
-        for (int[] r : rs)
-            System.out.println(toString(r));
-        System.out.println(rs[0] == rs[1]);
+        // Contsructor를 받는 대상은 class다.
+        Fractional[] rs = {new Fractional(1, 2), new Fractional(2, 4), new Fractional(4, 8),
+                new Fractional(5, 10)};
+        for (Fractional r : rs)
+            System.out.println(r.toString());
+        Fractional r = rs[0];
+        Object s = rs[1]; // object equals를 override 하지 않으면 fractional이 아닌 object로 나오기 때문에
+                          // overriding해야 한다.
+        System.out.println(r.equals(s)); // true (overriding 하지 않았을 때 false)
+
+        System.out.println(Mathx.<Fractional>reduce(Fractional::add, rs[0], rs[1], rs[2], rs[3]));
         // int[] x = fractional(1, 2);
         // int[] y = fractional(2, 4);
         // int[] z = fractional(4, 8);
@@ -54,14 +22,7 @@ public class FractionTest { // fractional, numerator, denomiator는 Abstraction 
         // System.out.println(add(x, y) == add(z, w)); // Data를 짤 때, equals 여부를 항상 생각해야 한다.
     }
 
-    private static String toString(int[] fraction) {
-        return numerator(fraction) + "/" + denomiator(fraction);
-    }
 
-    private static int[] add(int[] x, int[] y) {
-        return fractional(numerator(x) * denomiator(y) + numerator(y) * denomiator(x),
-                denomiator(x) * denomiator(y));
-    }
 }
 
 
