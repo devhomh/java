@@ -2,6 +2,8 @@ package practice;
 
 import java.util.function.BinaryOperator;
 
+// Ad hoc
+// Kleene Closure
 public class Mathx {
     public static void main(String[] args) {
         double[] numbers = new double[args.length];
@@ -16,6 +18,7 @@ public class Mathx {
         return reduceIf(x -> true, binaryOperation, init, numbers);
     }
 
+    // collection in java : 저장해서 원소들을 재사용 하는 것이 목적. (Persistance)
     // fold-{right, left}, accumulate
     // Type Polimorphism - primitive type을 넣을 수 없다.
 
@@ -34,6 +37,7 @@ public class Mathx {
             java.util.function.BinaryOperator<T> binaryOperation, T init, T... numbers) {
         T result = init;
         for (T number : numbers) // Liskov's Substitution Principle (LSP)
+                                 // numbers는 iterable한 것이 와야 한다.
             if (predicate.test(number))
                 result = binaryOperation.apply(result, number);
 

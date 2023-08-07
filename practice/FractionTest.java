@@ -11,7 +11,6 @@ public class FractionTest {
         Object s = rs[1]; // object equals를 override 하지 않으면 fractional이 아닌 object로 나오기 때문에
                           // overriding해야 한다.
         System.out.println(r.equals(s)); // true (overriding 하지 않았을 때 false)
-
         System.out.println(Mathx.<Fractional>reduce(Fractional::add, rs[0], rs[1], rs[2], rs[3]));
         // int[] x = fractional(1, 2);
         // int[] y = fractional(2, 4);
