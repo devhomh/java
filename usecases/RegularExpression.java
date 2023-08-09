@@ -21,7 +21,7 @@ public class RegularExpression {
         System.out.println(a_ab);
         System.out.println(ba_a0n);
 
-        // BinaryOperation e = new Or(a, b);
+        // BinaryOperation e = new Or(a, b); // -> default scope으로 sub-typing이 되는 것을 방지.
         // System.out.println(e);
 
     }
