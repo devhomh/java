@@ -8,7 +8,9 @@ public final class Epsilon implements Expression {
     // Case 2
     public static final Epsilon value = new Epsilon();
 
-    protected Epsilon() {}
+    protected Epsilon() {
+    }
+
     // Case 3 : Singleton Pattern
     // 재사용 하는 것 중에서 상태가 변하지 않는 것에 사용. ex) 접속 서버
     // synchronized : Critical Section(멀티 스레드가 동시에 접근해서는 안되는 공유 자원)을 지정하는 java의 키워드
@@ -19,9 +21,11 @@ public final class Epsilon implements Expression {
     // }
     // return instance;
     // };
-
-    @Override
-    public String toString() {
-        return "\u03B5";
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
     }
+
+    // public String literals() {
+    // return "\u03B5";
+    // };
 }

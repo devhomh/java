@@ -20,6 +20,8 @@ public interface Expression {
     public default Expression star() {
         return new Star(this);
     }
+
+    public void accept(Visitor visitor);
 }
 
 // Abstract Class : Partial Implementation = Inheritance (Ctrl + C,V)
@@ -28,6 +30,5 @@ public interface Expression {
 // Implementation = Representation (Abstract Barrier의 아래에 있는 것들을 기술하는 것)
 // Interface : Type Signature(제약 조건)만을 가지고 있는 Abstract Class
 // Pure Virtual Class (in C++)
-
 
 // Interface : Requiremnents들을 기술.

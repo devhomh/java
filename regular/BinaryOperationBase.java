@@ -4,16 +4,13 @@ package regular;
 abstract class BinaryOperationBase {
     private Expression left;
     private Expression right;
-    // private String operator;
 
     // protected로 써야 하는 이유 : super로 접근하기 위해서
-    // protected BinaryOperation(Expression left, String operator, Expression right) {
+    // protected BinaryOperation(Expression left, String operator, Expression right)
     protected BinaryOperationBase(Expression left, Expression right) {
         this.left = left;
         this.right = right;
-        // this.operator = operator;
     }
-
 
     public Expression getLeft() {
         return left;
@@ -23,12 +20,7 @@ abstract class BinaryOperationBase {
         return right;
     }
 
-    protected abstract String getOperator() {}
-
-    @Override
-    public String toString() {
-        return "(" + this.getLeft() + this.getOperator() + this.getRight() + ")";
-    }
+    // 보통 toString은 Debugging 목적으로 쓰인다.
 }
 
 // Sub-Typing vs Sub-Class

@@ -1,4 +1,4 @@
-package exam;
+package subtyping;
 
 public class Bat implements Mammalia {
 

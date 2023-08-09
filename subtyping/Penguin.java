@@ -1,4 +1,4 @@
-package exam;
+package subtyping;
 
 public class Penguin implements Bird {
     @Override
@@ -10,8 +10,6 @@ public class Penguin implements Bird {
     @Override
     public boolean isFly() {
         // TODO Auto-generated method stub
-        return true;
+        return false;
     }
 }
-
-

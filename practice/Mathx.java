@@ -14,7 +14,7 @@ public class Mathx {
         }
     }
 
-    public static <T> T reduce(BinaryOperator<T> binaryOperation, T init, T... numbers) {
+    public static <T> T reduce(BinaryOperator<T> binaryOperation, T init, Iterator<T> iterator) {
         return reduceIf(x -> true, binaryOperation, init, numbers);
     }
 
@@ -22,7 +22,8 @@ public class Mathx {
     // fold-{right, left}, accumulate
     // Type Polimorphism - primitive type을 넣을 수 없다.
 
-    // public static double reduceIf(Predicate predicate, BinaryOperation binaryOperation, double
+    // public static double reduceIf(Predicate predicate, BinaryOperation
+    // binaryOperation, double
     // init,
     // double... numbers) {
     // double result = init;

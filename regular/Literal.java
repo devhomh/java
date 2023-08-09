@@ -12,11 +12,11 @@ public final class Literal implements Expression {
         return character;
     }
 
-    @Override
-    public String toString() {
-        return String.valueOf(character);
-        // Interger v = new Integer(5) -> Deprecated
-        // Interger v= Interger.valueOf(5)
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
     }
 
+    // public String literals() {
+    // return String.valueOf(this.character);
+    // }
 }

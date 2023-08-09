@@ -12,14 +12,22 @@ public class RegularExpression {
 
         // Expression a_ab = new Or(a, new Then(a, b));
         // Case 1
-        // Expression ba_a0n = new Or(new Then(b, a), new Or(Epsilon.value, new Star(a)));
+        // Expression ba_a0n = new Or(new Then(b, a), new Or(Epsilon.value, new
+        // Star(a)));
         // Case 2
-        // Expression ba_a0n = new Or(new Then(b, a), new Or(Expression.epsilon, new Star(a)));
+        // Expression ba_a0n = new Or(new Then(b, a), new Or(Expression.epsilon, new
+        // Star(a)));
         // Case 3
-        // Expression ba_a0n = new Or(new Then(b, a), new Or(Epsilon.getInstace(), new Star(a)));
-
+        // Expression ba_a0n = new Or(new Then(b, a), new Or(Epsilon.getInstace(), new
+        // Star(a)));
+        System.out.println(a);
+        System.out.println(b);
         System.out.println(a_ab);
         System.out.println(ba_a0n);
+        System.out.println(Literals.of(a_ab));
+        System.out.println(Literals.of(ba_a0n));
+        System.out.println(PrintableForm.of(a_ab));
+        System.out.println(PrintableForm.of(ba_a0n));
 
         // BinaryOperation e = new Or(a, b); // -> default scope으로 sub-typing이 되는 것을 방지.
         // System.out.println(e);
